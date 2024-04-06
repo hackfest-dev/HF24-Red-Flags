@@ -1,0 +1,257 @@
+.heading {
+    margin: 0;
+    position: relative;
+    font-size: var(--font-size-13xl);
+    letter-spacing: -0.01em;
+    line-height: 150%;
+    font-weight: 400;
+    font-family: inherit;
+    white-space: nowrap;
+  }
+  .contract,
+  .sub {
+    height: 1.625rem;
+    line-height: 160%;
+  }
+  .sub {
+    width: 37.125rem;
+    position: relative;
+    color: var(--greyscale-grey-600);
+    display: none;
+    white-space: nowrap;
+  }
+  .contract {
+    letter-spacing: -0.02em;
+    display: inline-block;
+  }
+  .contract,
+  .contract1,
+  .icon8 {
+    position: relative;
+    flex-shrink: 0;
+  }
+  .icon8 {
+    height: 1rem;
+    width: 1rem;
+    overflow: hidden;
+  }
+  .contract1 {
+    height: 1.625rem;
+    letter-spacing: -0.02em;
+    line-height: 160%;
+    display: inline-block;
+    white-space: nowrap;
+  }
+  .icon9 {
+    height: 1rem;
+    width: 1rem;
+    overflow: hidden;
+  }
+  .contract2,
+  .icon10,
+  .icon9 {
+    position: relative;
+    flex-shrink: 0;
+  }
+  .contract2 {
+    height: 1.625rem;
+    letter-spacing: -0.02em;
+    line-height: 160%;
+    display: inline-block;
+    white-space: nowrap;
+  }
+  .icon10 {
+    height: 1rem;
+    width: 1rem;
+    overflow: hidden;
+  }
+  .contract3 {
+    height: 1.625rem;
+    letter-spacing: -0.02em;
+    line-height: 160%;
+    display: inline-block;
+    white-space: nowrap;
+  }
+  .contract3,
+  .general-info,
+  .icon11 {
+    position: relative;
+    flex-shrink: 0;
+  }
+  .icon11 {
+    height: 1rem;
+    width: 1rem;
+    overflow: hidden;
+  }
+  .general-info {
+    height: 1.625rem;
+    letter-spacing: -0.02em;
+    line-height: 160%;
+    color: var(--greyscale-grey-400);
+    display: inline-block;
+  }
+  .breadcrumbs,
+  .title {
+    justify-content: flex-start;
+  }
+  .breadcrumbs {
+    width: 11.375rem;
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--gap-5xs-8);
+  }
+  .title {
+    width: 40.375rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--gap-9xs);
+    max-width: 100%;
+  }
+  .icon12 {
+    height: 1.5rem;
+    width: 1.5rem;
+    position: relative;
+    display: none;
+    min-height: 1.5rem;
+  }
+  .create-a-contract {
+    flex: 1;
+    position: relative;
+    font-size: var(--font-size-sm);
+    letter-spacing: -0.01em;
+    line-height: 1.25rem;
+    font-family: var(--font-abhaya-libre-medium);
+    color: var(--main-color-white);
+    text-align: left;
+  }
+  .icon13 {
+    height: 1.5rem;
+    width: 1.5rem;
+    position: relative;
+  }
+  .button {
+    cursor: pointer;
+    border: 0;
+    padding: var(--padding-3xs) var(--padding-xl);
+    background-color: var(--main-color-primary);
+    align-self: stretch;
+    flex: 0.6774;
+    border-radius: var(--br-81xl);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: var(--gap-6xs);
+  }
+  .icon15 {
+    height: 1.5rem;
+    width: 1.5rem;
+    position: relative;
+  }
+  .icon14 {
+    height: 2.5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: var(--padding-5xs);
+    box-sizing: border-box;
+  }
+  .image-icon {
+    height: 2.5rem;
+    width: 2.5rem;
+    position: relative;
+    border-radius: var(--br-81xl);
+    object-fit: cover;
+  }
+  .check-icon {
+    height: 40%;
+    width: 40%;
+    position: absolute;
+    margin: 0 !important;
+    top: 60%;
+    right: 0;
+    bottom: 0;
+    left: 60%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+    display: none;
+    z-index: 1;
+  }
+  .avatar {
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: var(--br-81xl);
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: relative;
+  }
+  .chris-miguel,
+  .freelancer {
+    position: relative;
+    line-height: 160%;
+    display: inline-block;
+  }
+  .chris-miguel {
+    min-width: 4.625rem;
+    white-space: nowrap;
+  }
+  .freelancer {
+    font-size: var(--font-size-xs);
+    letter-spacing: 0.01em;
+    color: var(--greyscale-grey-500);
+    min-width: 3.375rem;
+  }
+  .text9 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: var(--gap-12xs);
+  }
+  .navbar,
+  .right-menu,
+  .user {
+    display: flex;
+    flex-direction: row;
+  }
+  .user {
+    flex: 1;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--gap-xs);
+  }
+  .navbar,
+  .right-menu {
+    max-width: 100%;
+    gap: var(--gap-xl);
+  }
+  .right-menu {
+    height: 2.75rem;
+    width: 20.625rem;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: var(--font-size-sm);
+  }
+  .navbar {
+    align-self: stretch;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: var(--padding-5xl) var(--padding-13xl);
+    box-sizing: border-box;
+    text-align: left;
+    font-size: var(--body-medium-medium-size);
+    color: var(--main-color-black);
+    font-family: var(--font-abhaya-libre-medium);
+  }
+  @media screen and (max-width: 1000px) {
+    .text9 {
+      display: none;
+    }
+  }
+  

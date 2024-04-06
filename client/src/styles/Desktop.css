@@ -1,0 +1,72 @@
+.menu,
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.menu {
+  align-self: stretch;
+  flex: 1;
+  align-items: center;
+}
+.sidebar {
+  height: 64rem;
+  width: 17.5rem;
+  background-color: var(--main-color-white);
+  border-right: 1px solid var(--greyscale-grey-200);
+  box-sizing: border-box;
+  align-items: flex-start;
+}
+.trade-forge-container-wrapper {
+  width: 66.313rem;
+  flex-direction: row;
+  padding: 0 3.688rem;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.create-contract-button,
+.desktop-1,
+.trade-forge-container-wrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.create-contract-button {
+  flex: 1;
+  flex-direction: column;
+  gap: 2.019rem;
+  max-width: calc(100% - 280px);
+}
+.desktop-1 {
+  width: 100%;
+  position: relative;
+  background-color: var(--main-color-white);
+  overflow: hidden;
+  flex-direction: row;
+  letter-spacing: normal;
+}
+@media screen and (max-width: 1050px) {
+  .trade-forge-container-wrapper {
+    padding-left: var(--padding-10xl);
+    padding-right: var(--padding-10xl);
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .sidebar {
+    display: none;
+  }
+  .create-contract-button {
+    max-width: 100%;
+  }
+  .desktop-1 {
+    padding-left: var(--padding-xl);
+    padding-right: var(--padding-xl);
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 725px) {
+  .create-contract-button {
+    gap: 1rem 2.019rem;
+  }
+}
