@@ -1,33 +1,39 @@
 pragma solidity >=0.5.0 <0.6.0;
+import "./zombiefactory.sol";
+contract KittyInterface {
+  function getKitty(uint256 _id) external view returns (
+    bool isGestating,
+    bool isReady,
+    uint256 cooldownIndex,
+    uint256 nextActionAt,
+    uint256 siringWithId,
+    uint256 birthTime,
+    uint256 matronId,
+    uint256 sireId,
+    uint256 generation,
+    uint256 genes
+  );
+}
+contract ZombieFeeding is ZombieFactory {
 
-contract ZombieFactory {
+  address ckAddress = 0x06012c8cf97BEaD5deAe237070F9587f8E7A266d;
+  KittyInterface kittyContract = KittyInterface(ckAddress);
 
-    // declare our event here
-    event NewZombie(uint zombieId, string name, uint dna);
-    uint dnaDigits = 16;
-    uint dnaModulus = 10 ** dnaDigits;
-
-    struct Zombie {
-        string name;
-        uint dna;
+function feedAndMultiply(uint _zombieId, uint _targetDna, string memory _species) public {
+    require(msg.sender == zombieToOwner[_zombieId]);
+    Zombie storage myZombie = zombies[_zombieId];
+    _targetDna = _targetDna % dnaModulus;
+    uint newDna = (myZombie.dna + _targetDna) / 2;
+    if (keccak256(abi.encodePacked(_species)) == keccak256(abi.encodePacked("kitty"))) {
+      newDna = newDna - newDna % 100 + 99;
     }
+    _createZombie("NoName", newDna);
+  }
 
-    Zombie[] public zombies;
-
-    function _createZombie(string memory _name, uint _dna) private {
-        uint id = zombies.push(Zombie(_name, _dna))-1;
-        // and fire it here
-        emit NewZombie(id, _name, _dna);
-    }
-
-    function _generateRandomDna(string memory _str) private view returns (uint) {
-        uint rand = uint(keccak256(abi.encodePacked(_str)));
-        return rand % dnaModulus;
-    }
-
-    function createRandomZombie(string memory _name) public {
-        uint randDna = _generateRandomDna(_name);
-        _createZombie(_name, randDna);
-    }
+  function feedOnKitty(uint _zombieId, uint _kittyId) public {
+    uint kittyDna;
+    (,,,,,,,,,kittyDna) = kittyContract.getKitty(_kittyId);
+    feedAndMultiply(_zombieId, kittyDna, "kitty");
+  }
 
 }
