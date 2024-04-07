@@ -1,34 +1,8 @@
 // SPDX-License-Identifier: MIT
-// OpenZeppelin Contracts (last updated v5.0.0) (access/Ownable.sol)
+pragma solidity ^0.8.0;
 
-pragma solidity >=0.7.0 <0.9.0;
-
-import {Context} from "utils/Context.sol";
-
-/**
- * @dev Contract module which provides a basic access control mechanism, where
- * there is an account (an owner) that can be granted exclusive access to
- * specific functions.
- *
- * The initial owner is set to the address provided by the deployer. This can
- * later be changed with {transferOwnership}.
- *
- * This module is used through inheritance. It will make available the modifier
- * `onlyOwner`, which can be applied to your functions to restrict their use to
- * the owner.
- */
-abstract contract Ownable is Context {
+contract Ownable {
     address private _owner;
-
-    /**
-     * @dev The caller account is not authorized to perform an operation.
-     */
-    error OwnableUnauthorizedAccount(address account);
-
-    /**
-     * @dev The owner is not a valid owner account. (eg. `address(0)`)
-     */
-    error OwnableInvalidOwner(address owner);
 
     event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
 
@@ -36,9 +10,6 @@ abstract contract Ownable is Context {
      * @dev Initializes the contract setting the address provided by the deployer as the initial owner.
      */
     constructor(address initialOwner) {
-        if (initialOwner == address(0)) {
-            revert OwnableInvalidOwner(address(0));
-        }
         _transferOwnership(initialOwner);
     }
 
@@ -61,9 +32,7 @@ abstract contract Ownable is Context {
      * @dev Throws if the sender is not the owner.
      */
     function _checkOwner() internal view virtual {
-        if (owner() != _msgSender()) {
-            revert OwnableUnauthorizedAccount(_msgSender());
-        }
+        require(owner() == msg.sender);
     }
 
     /**
@@ -82,9 +51,7 @@ abstract contract Ownable is Context {
      * Can only be called by the current owner.
      */
     function transferOwnership(address newOwner) public virtual onlyOwner {
-        if (newOwner == address(0)) {
-            revert OwnableInvalidOwner(address(0));
-        }
+        require(owner() == msg.sender);
         _transferOwnership(newOwner);
     }
 
@@ -96,5 +63,59 @@ abstract contract Ownable is Context {
         address oldOwner = _owner;
         _owner = newOwner;
         emit OwnershipTransferred(oldOwner, newOwner);
+    }
+}
+
+
+contract CourseRegistration is Ownable {
+    uint256 public courseFee;
+    Payment[] public payments;
+
+    event PaymentReceived(address indexed user, string email, uint256 amount);
+
+    struct Payment {
+        address user;
+        string email;
+        uint256 amount;
+    }
+
+    constructor(uint256 _courseFee) Ownable(msg.sender) {
+        courseFee = _courseFee;
+    }
+
+    function payForCourse(string memory email) public payable {
+        require(msg.value == courseFee, "Payment must be equal to the course fee");
+        payments.push(Payment(msg.sender, email, msg.value));
+        emit PaymentReceived(msg.sender, email, msg.value);
+    }
+
+    function withdrawFunds() public onlyOwner {
+        payable(owner()).transfer(address(this).balance);
+    }
+
+    function getPaymentsByUser(address userAddress) public view returns (Payment[] memory) {
+        uint256 count = 0;
+
+        for (uint i = 0; i < payments.length; i++) {
+            if (payments[i].user == userAddress) {
+                count++;
+            }
+        }
+
+        Payment[] memory userPayments = new Payment[](count);
+
+        uint256 index = 0;
+        for (uint i = 0; i < payments.length; i++) {
+            if (payments[i].user == userAddress) {
+                userPayments[index] = payments[i];
+                index++;
+            }
+        }
+
+        return userPayments;
+    }
+
+    function getAllPayments() public view returns (Payment[] memory) {
+        return payments;
     }
 }
